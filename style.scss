@@ -1,4 +1,242 @@
+// font-face
+@font-face {
+  font-family: roboto;
+  src: url(./font/Roboto-Light.ttf);
+}
+
+@font-face {
+  font-family: roboto-bold;
+  src: url(./font/Roboto-Bold.ttf);
+}
+
+@font-face {
+  font-family: roboto-italic;
+  src: url(./font/Roboto-LightItalic.ttf);
+}
+
+@font-face {
+  font-family: pacifico-regular;
+  src: url(./font/Pacifico-Regular.ttf);
+}
+
+// variable
+$color: #f0394d;
+
+// format css
 * {
   margin: 0;
   padding: 0;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+}
+
+// header
+header {
+  border-top: 2px $color solid;
+  nav {
+    .container {
+      position: absolute;
+      background: transparent;
+      left: 10%;
+      z-index: 999;
+      .row {
+        justify-content: space-between;
+  
+        .logo {
+          margin-top: 5px;
+          font-family: "roboto-bold";
+          text: {
+            decoration: none;
+            transform: uppercase;
+          }
+          color: #FFF;
+          background-color: $color;
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          font-size: 31px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+    
+          i {
+            font-size: 12px;
+            padding: 3px;
+          }
+        }
+    
+        #nav__menu {
+          ul {
+            display: flex;
+            list-style: none;
+            font: {
+              size: 16px;
+              family: "roboto-bold";
+            }
+            text-transform: uppercase;
+            padding: 30px 0px;
+            color: #FFF;
+  
+            li {
+              margin-left: 15px;
+              cursor: pointer;
+              i {
+                margin-left: 15px;
+                font-size: 10px;
+                color: $color;
+              }
+            }
+  
+            li:nth-child(8) {
+              i {
+                display: none;
+              }
+            }
+  
+            li:hover {
+              color: $color;
+            }
+          }
+        }
+      }
+    }
+
+    #slide {
+      overflow: hidden;
+
+      .slide__slidy {
+        position: relative;
+        width: 300%;
+        animation: 30s slidy infinite;
+
+        &:after {
+          content: '\A';
+          position: absolute;
+          width: 100%; 
+          height:100%;
+          top:0; 
+          left:0;
+          background:rgba(0,0,0,0.2);
+          // transition: all 0.5s;
+          // -webkit-transition: all 0.5s;
+          // -moz-transition: all 0.5s;
+        }
+
+        @keyframes slidy {
+          0% {
+            left: 0%;
+          }
+          30% {
+            left: 0%;
+          }
+          33% {
+            left: -100%;
+          }
+          63% {
+            left: -100%;
+          }
+          66% {
+            left: -200%;
+          }
+          100% {
+            left: -200%;
+          }
+        }
+
+        img {
+          height: 100vh;
+          width: 33.33333%;
+        }
+      }
+
+      .slide__content {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        color: #FFF;
+        
+        h1 {
+          width: 300px;
+          margin-left: -150px;
+          line-height: 1.2;
+          transform: rotate(-10deg);
+          text: {
+            transform: capitalize;
+            align: center;
+          }
+
+          font: {
+            size: 50px;
+            family: "pacifico-regular";
+          }
+        }
+
+        h1:nth-child(3) {
+          font-size: 40px;
+        }
+
+        h2 {
+          width: 400px;
+          padding: 10px 0;
+          margin: {
+            left: -200px;
+            top: 40px;
+          }
+          text: {
+            transform: uppercase;
+            align: center;
+          }
+          border: {
+            top: medium double #fff;
+            bottom: medium double #fff;
+          }
+          font: {
+            family: "roboto";
+            size: 16px;
+          }
+        }
+
+        &__icon {
+          width: 100px;
+          text-align: center;
+          margin: {
+            top: 40px;
+            left: -50px;
+          }
+
+          i {
+            padding: 5px;
+            font-size: 20px;
+          }
+
+          span {
+            width: 10px;
+            height: 8px;
+            display: inline-block;
+            border-top: solid 1px #FFF;
+          }
+
+          i:nth-child(2) {
+            position: relative;
+            z-index: 1;
+            right: -7px;
+            color: $color;
+          }
+
+          i:nth-child(3) {
+            position: relative;
+            left: -7px;
+          }
+
+        }
+      }
+    }
+  }
 }

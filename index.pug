@@ -1,10 +1,42 @@
 doctype html
 html(lang="en")
-  header
+  head
     meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title FOREVER
-    link(rel="icon" href="./public/image/favicon.jpg")
-    link(rel="stylesheet", href="./public/style.css")
+    link(rel="icon" href="./image/favicon.jpg")
+    link(rel="stylesheet", href="./style.css")
+    link(rel="stylesheet", href="fontawesome-free-5.13.0-web/css/all.min.css")
   body
-    
+    header
+      nav
+        .container
+          .row
+            a.logo(href="#")
+              strong g
+              i.fas.fa-heart
+              strong d
+            #nav__menu
+              - const arryNav = [ "home", "about", "gallery", "the story", "the wedding", "blog", "page", "rsvp"]
+              ul
+                for n in arryNav
+                  li
+                    a=n
+                    i.fas.fa-heart
+        #slide
+          .slide__slidy
+            img(alt="slide" src="./image/slide-image-1920-c.jpg")
+            img(alt="slide" src="./image/slide-image-1920-d.jpg")
+            img(alt="slide" src="./image/slide-image-1920-f.jpg")
+          - const arrH1 = ["save", "the date", "- 27 . 11 . 98 -"]
+          .slide__content
+            for n in arrH1
+              h1=n
+            h2 *** we are getting married ***
+            .slide__content__icon
+              span
+              i.fas.fa-heart
+              i.fas.fa-heart
+              span
+            
