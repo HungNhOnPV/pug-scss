@@ -1,3 +1,25 @@
+mixin customSlide(metadata)
+  .slide__slidy
+    img(title="slide1" src=metadata.src1)
+    img(title="slide2" src=metadata.src2)
+    img(title="slide3" src=metadata.src3)
+
+mixin customIcon
+  span
+  i.fas.fa-heart
+  i.fas.fa-heart
+  span
+
+mixin customPhoto(metadata)
+  .photo
+    img(title="photo" src=metadata.src)
+    .photo__layout
+      a(href="#" type="button")=metadata.a
+      .photo__layout__icon
+        i.fas.fa-heart
+        i.fas.fa-heart
+      h4=metadata.h4
+
 doctype html
 html(lang="en")
   head
@@ -25,20 +47,15 @@ html(lang="en")
                     a=n
                     i.fas.fa-heart
         #slide
-          .slide__slidy
-            img(alt="slide" src="./image/slide-image-1920-c.jpg")
-            img(alt="slide" src="./image/slide-image-1920-d.jpg")
-            img(alt="slide" src="./image/slide-image-1920-f.jpg")
+          - const slideImg = {"src1": "./image/slide-image-1920-c.jpg", "src2": "./image/slide-image-1920-d.jpg", "src3": "./image/slide-image-1920-f.jpg"}
+          + customSlide(slideImg)
           - const arrH1 = ["save", "the date", "- 27 . 11 . 98 -"]
           .slide__content
             for n in arrH1
               h1=n
             h2 *** we are getting married ***
             .slide__content__icon
-              span
-              i.fas.fa-heart
-              i.fas.fa-heart
-              span
+              + customIcon
     main
       section#couple
         .container
@@ -47,25 +64,8 @@ html(lang="en")
               h1 the happy couple
               p.title__blurb Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices malesuada ante quis pharetra. Nullam non bibendum dolor. Ut vel turpis accumsan, efficitur dolor fermentum, tincidunt metus.
               .title__icon
-                span
-                i.fas.fa-heart
-                i.fas.fa-heart
-                span
+                + customIcon
           .row
-            .photo
-              img(title="photo" src="./image/him2.jpg")
-              .photo__layout
-                a(href="#" type="button") about him
-                .photo__layout__icon
-                  i.fas.fa-heart
-                  i.fas.fa-heart
-                h4 *** the groom ***
-
-            .photo
-              img(title="photo" src="./image/her2.jpg")
-              .photo__layout
-                a(href="#" type="button") about her
-                .photo__layout__icon
-                  i.fas.fa-heart
-                  i.fas.fa-heart
-                h4 *** the bride ***
+            - const photo = [{"src": "./image/him2.jpg", "a": "about him", "h4": "*** the groom ***"}, {"src": "./image/her2.jpg", "a": "about her", "h4": "*** the bride ***"}]
+            + customPhoto(photo[0])
+            + customPhoto(photo[1])

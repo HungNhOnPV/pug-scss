@@ -148,8 +148,8 @@ header nav #slide .slide__content h2 {
   margin-top: 40px;
   text-transform: uppercase;
   text-align: center;
-  border-top: medium double #fff;
-  border-bottom: medium double #fff;
+  border-top: medium double #FFF;
+  border-bottom: medium double #FFF;
   font-family: "roboto";
   font-size: 16px;
 }
