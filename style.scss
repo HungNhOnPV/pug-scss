@@ -1,27 +1,97 @@
-// font-face
-@font-face {
-  font-family: roboto;
-  src: url(./font/Roboto-Light.ttf);
-}
-
-@font-face {
-  font-family: roboto-bold;
-  src: url(./font/Roboto-Bold.ttf);
-}
-
-@font-face {
-  font-family: roboto-italic;
-  src: url(./font/Roboto-LightItalic.ttf);
-}
-
-@font-face {
-  font-family: pacifico-regular;
-  src: url(./font/Pacifico-Regular.ttf);
-}
-
 // variable
 $color: #f0394d;
 $colorWhite: #FFF;
+$colorSilver: #e1dddd;
+$time: 0.5s;
+$timeZero: 0s;
+$center: center;
+
+// mixin
+@mixin customFontFace($fontFamily, $src) {
+  @font-face {
+    font-family: $fontFamily;
+    src: url($src);
+  }
+}
+
+@mixin customSpan($width, $height, $px, $color) {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  border-top: solid $px $color;
+}
+
+@mixin customIcon($position, $count, $z, $color, $result) {
+  position: $position;
+  z-index: $z;
+  color: $color;
+  @if $result == true {
+    right: $count;
+  }
+  @else {
+    left: $count;
+  }
+}
+
+@mixin customVisibility($opacity, $duration, $delay) {
+  opacity: $opacity;
+  transition: $duration $delay;
+}
+
+@mixin customPosition($position, $top, $left, $z, $width, $height, $result) {
+  position: $position;
+  top: $top;
+  left: $left;
+  z-index: $z;
+  @if $result == true {
+    width: $width;
+    height: $height;
+  }
+}
+
+
+// placeholder
+%customBorder {
+  border: {
+    top: medium double $colorWhite;
+    bottom: medium double $colorWhite;
+  }
+}
+
+%customSlide {
+  @keyframes slidy {
+    0% {
+      left: 0%;
+    }
+    30% {
+      left: 0%;
+    }
+    33% {
+      left: -100%;
+    }
+    63% {
+      left: -100%;
+    }
+    66% {
+      left: -200%;
+    }
+    100% {
+      left: -200%;
+    }
+  }
+}
+
+%customFlexCenter {
+  display: flex;
+  justify-content: $center;
+  align-items: $center;
+}
+
+// font-face
+@include customFontFace(roboto, "./font/Roboto-Light.ttf");
+@include customFontFace(roboto-bold, "./font/Roboto-Bold.ttf");
+@include customFontFace(roboto-italic, "./font/Roboto-LightItalic.ttf");
+@include customFontFace(pacifico-regular, "./font/Pacifico-Regular.ttf");
 
 // format css
 * {
@@ -42,373 +112,278 @@ $colorWhite: #FFF;
 // header
 header {
   border-top: 2px $color solid;
-  nav {
-    .container {
-      position: absolute;
-      background: transparent;
-      left: 15%;
-      z-index: 999;
-      .row {
-        // justify-content: space-between;
-  
-        .logo {
-          margin-top: 5px;
-          font-family: "roboto-bold";
-          text: {
-            decoration: none;
-            transform: uppercase;
-          }
-          color: $colorWhite;
-          background-color: $color;
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
-          font-size: 31px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+  nav.container {
+    @include customPosition(absolute, 0, 15%, 999, 0, 0, false);
+    background: transparent;
     
-          i {
-            font-size: 12px;
-            padding: 3px;
-          }
-        }
-    
-        #nav__menu {
-          ul {
-            display: flex;
-            list-style: none;
-            font: {
-              size: 16px;
-              family: "roboto-bold";
-            }
-            text-transform: uppercase;
-            padding: 30px 0px;
-            color: $colorWhite;
-  
-            li {
-              margin-left: 15px;
-              cursor: pointer;
-              i {
-                margin-left: 15px;
-                font-size: 10px;
-                color: $color;
-              }
-            }
-  
-            li:nth-child(8) {
-              i {
-                display: none;
-              }
-            }
-  
-            li:hover {
-              color: $color;
-            }
-          }
-        }
-      }
-    }
-
-    #slide {
-      overflow: hidden;
-
-      .slide__slidy {
-        position: relative;
-        width: 300%;
-        animation: 30s slidy infinite;
-
-        &:after {
-          content: '\A';
-          position: absolute;
-          width: 100%; 
-          height:100%;
-          top:0; 
-          left:0;
-          background:rgba(0,0,0,0.2);
-          // transition: all 0.5s;
-          // -webkit-transition: all 0.5s;
-          // -moz-transition: all 0.5s;
-        }
-
-        @keyframes slidy {
-          0% {
-            left: 0%;
-          }
-          30% {
-            left: 0%;
-          }
-          33% {
-            left: -100%;
-          }
-          63% {
-            left: -100%;
-          }
-          66% {
-            left: -200%;
-          }
-          100% {
-            left: -200%;
-          }
-        }
-
-        img {
-          height: 100vh;
-          width: 33.33333%;
-        }
-      }
-
-      .slide__content {
-        position: absolute;
-        top: 20%;
-        left: 50%;
+    .row {
+      .logo {
+        @include customPosition(none, 0, 0, 0, 80px, 80px, true);
+        @extend %customFlexCenter;
         color: $colorWhite;
+        background-color: $color;
+        margin-top: 5px;
+        border-radius: 50%;
         
-        h1 {
-          width: 300px;
-          margin-left: -150px;
-          line-height: 1.2;
-          transform: rotate(-10deg);
-          text: {
-            transform: capitalize;
-            align: center;
-          }
+        font: {
+          size: 31px;
+          family: "roboto-bold";
+        }
+        text: {
+          decoration: none;
+          transform: uppercase;
+        }
+        i {
+          font-size: 12px;
+          padding: 3px;
+        }
+      }
+  
+      #nav__menu {
+        ul {
+          display: flex;
+          list-style: none;
+          text-transform: uppercase;
+          color: $colorWhite;
+          padding: 30px 0px;
 
           font: {
-            size: 50px;
-            family: "pacifico-regular";
-          }
-        }
-
-        h1:nth-child(3) {
-          font-size: 40px;
-        }
-
-        h2 {
-          width: 400px;
-          padding: 10px 0;
-          margin: {
-            left: -200px;
-            top: 40px;
-          }
-          text: {
-            transform: uppercase;
-            align: center;
-          }
-          border: {
-            top: medium double $colorWhite;
-            bottom: medium double $colorWhite;
-          }
-          font: {
-            family: "roboto";
             size: 16px;
+            family: "roboto-bold";
           }
-        }
+          li {
+            margin-left: 15px;
+            cursor: pointer;
 
-        &__icon {
-          width: 100px;
-          text-align: center;
-          margin: {
-            top: 40px;
-            left: -50px;
+            i {
+              font-size: 10px;
+              color: $color;
+              margin-left: 15px;
+            }
           }
-
-          i {
-            padding: 5px;
-            font-size: 20px;
+          li:nth-child(8) {
+            i {
+              display: none;
+            }
           }
-
-          span {
-            width: 10px;
-            height: 8px;
-            display: inline-block;
-            border-top: solid 1px $colorWhite;
-          }
-
-          i:nth-child(2) {
-            position: relative;
-            z-index: 1;
-            right: -7px;
+          li:hover {
             color: $color;
           }
-
-          i:nth-child(3) {
-            position: relative;
-            left: -7px;
-          }
-
         }
       }
     }
   }
 }
 
+// slide
+#slide {
+  overflow: hidden;
+
+  .slide__slidy {
+    @include customPosition(relative, 0, 0, 0, 300%, 100hv, true);
+    animation: 30s slidy infinite;
+
+    &:after {
+      content: '';
+      @include customPosition(absolute, 0, 0, 0, 100%, 100%, true);
+      background:rgba(0,0,0,0.2);
+    }
+
+    @extend %customSlide;
+
+    img {
+      width: 33.33333%;
+      height: 100vh;
+    }
+  }
+
+  .slide__content {
+    @include customPosition(absolute, 20%, 50%, 1, 0, 0, false);
+    color: $colorWhite;
+    
+    h1 {
+      width: 300px;
+      line-height: 1.2;
+      margin-left: -150px;
+      transform: rotate(-10deg);
+
+      font: {
+        size: 50px;
+        family: "pacifico-regular";
+      }
+
+      text: {
+        align: $center;
+        transform: capitalize;
+      }
+    }
+
+    h1:nth-child(3) {
+      font-size: 40px;
+    }
+
+    h2 {
+      width: 400px;
+      padding: 10px 0;
+
+      font: {
+        family: "roboto";
+        size: 16px;
+      }
+      text: {
+        align: $center;
+        transform: uppercase;
+      }
+      margin: {
+        left: -200px;
+        top: 40px;
+      }
+      @extend %customBorder;
+    }
+
+    &__icon {
+      width: 100px;
+      text-align: $center;
+
+      margin: {
+        top: 40px;
+        left: -50px;
+      }
+      i {
+        padding: 5px;
+        font-size: 20px;
+      }
+      span {
+        @include customSpan(10px, 8px, 1px, $colorWhite);
+      }
+      i:nth-child(2) {
+        @include customIcon(relative, -7px, 1, $color, true);
+      }
+      i:nth-child(3) {
+        @include customIcon(relative, -7px, 0, $colorWhite, false);
+      }
+    }
+  }
+}
+
+// couple
 #couple {
   margin-top: 100px;
   .container {
     .row {
       .title {
-        text-align: center;
         font-family: "roboto";
+        text-align: $center;
 
         h1 {
-          text-transform: uppercase;
-          color: #333333;
-          margin-bottom: 20px;
           font-size: 40px;
-        }
-
-        &__blurb {
-          color: #6a6a6a;
-          font-size: 15px;
+          color: #333333;
+          text-transform: uppercase;
           margin-bottom: 20px;
         }
-
+        &__blurb {
+          font-size: 15px;
+          color: #6a6a6a;
+          margin-bottom: 20px;
+        }
         &__icon {
           i {
+            font-size: 20px;
             margin-bottom: 40px;
             padding: 5px;
-            font-size: 20px;
           }
-  
           span {
-            width: 30px;
-            height: 8px;
-            display: inline-block;
-            border-top: solid 2px #e1dddd;
+            @include customSpan(30px, 8px, 2px, $colorSilver);
           }
   
           i:nth-child(2) {
-            position: relative;
-            z-index: 1;
-            right: -7px;
-            color: $color;
+            @include customIcon(relative, -7px, 1, $color, true);
           }
   
           i:nth-child(3) {
-            position: relative;
-            left: -7px;
-            color: #e1dddd;
+            @include customIcon(relative, -7px, 0, $colorSilver, false);
           }
         }
       }
 
       .photo {
-        width: 48%;
-        height: 450px;
+        @include customPosition(relative, 0, 0, 0, 48%, 450px, true);
         overflow: hidden;
-        position: relative;
         margin-bottom: 100px;
 
         img {
           width: 100%;
-          transition: 0.5s;
+          transition: $time;
         }
-
         &__layout {
-          position: absolute;
-          width: 95%; 
-          height: 95%;
-          top: 2.5%; 
-          left: 2.5%;
+          @include customPosition(absolute, 2.5%, 2.5%, 1, 95%, 95%, true);
+          display: block;
+          color: $colorWhite;
           font-family: 'roboto';
           border: 1px solid $colorWhite;
-          color: $colorWhite;
-          display: block;
-          transition: 0.5s;
+          transition: $time;
 
           text: {
-            align: center;
+            align: $center;
             transform: uppercase;
           }
-
           a {
-            position: absolute;
-            top: 45%;
-            left: 50%;
-            width: 150px;
-            margin-left: -75px;
-            padding: 10px 0;
+            @include customPosition(absolute, 45%, 50%, 2, 150px, auto, true);
             font-size: 18px;
             color: $colorWhite;
+            margin-left: -75px;
+            padding: 10px 0;
             border: 1px solid $colorWhite;
             border-radius: 3px;
-            opacity: 0;
+            @include customVisibility(0, $time, $timeZero);
             
             text: {
               decoration: none;
               transform: uppercase;
             }
           }
-
           a:hover {
             background: $color;
             border: 1px solid $color;
           }
-
           &__icon {
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            width: 40px;
-            margin-left: -20px;
+            @include customPosition(absolute, 70%, 50%, 2, 40px, auto, true);
             font-size: 18px;
-            opacity: 1;
-            transition: 1s;
+            margin-left: -20px;
+            @include customVisibility(1, $time, $timeZero);
 
             i:nth-child(1) {
-              position: relative;
-              z-index: 1;
-              right: -2px;
-              color: $color;
+              @include customIcon(relative, -2px, 1, $color, true);
             }
-
             i:nth-child(2) {
-              position: relative;
-              left: -2px;
+              @include customIcon(relative, -2px, 0, $colorWhite, false);
             }
           }
-
           h4 {
-            position: absolute;
-            top: 80%;
-            left: 50%;
-            width: 200px;
-            margin-left: -100px;
+            @include customPosition(absolute, 80%, 50%, 2, 200px, auto, true);
             font-size: 16px;
+            margin-left: -100px;
             padding: 5px;
-            opacity: 1;
-
-            border: {
-              top: medium double $colorWhite;
-              bottom: medium double $colorWhite;
-            }
+            @include customVisibility(1, $time, $timeZero);
+            @extend %customBorder;
           }
-
           &:hover a {
-            opacity: 1;
-            transition: 0.5s 0.2s;
+            @include customVisibility(1, $time, 0.2s);
           }
-  
           &:hover .photo__layout__icon {
-            opacity: 0;
-            transition: 0.5s;
+            @include customVisibility(0, $time, $timeZero);
           }
-  
           &:hover h4 {
-            opacity: 0;
-            transition: 0.5s;
+            @include customVisibility(0, $time, $timeZero);
           }
         }
-
         &:hover img {
           transform: scale(1.1);
-          transition: 0.5s;
+          transition: $time;
         }
-
         &:hover .photo__layout {
           background:rgba(0,0,0,0.3);
-          transition: 0.5s;
+          transition: $time;
         }
       }
     }

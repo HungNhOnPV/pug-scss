@@ -32,31 +32,30 @@ html(lang="en")
     link(rel="stylesheet", href="fontawesome-free-5.13.0-web/css/all.min.css")
   body
     header
-      nav
-        .container
-          .row
-            a.logo(href="#")
-              strong g
-              i.fas.fa-heart
-              strong d
-            #nav__menu
-              - const arryNav = [ "home", "about", "gallery", "the story", "the wedding", "blog", "page", "rsvp"]
-              ul
-                for n in arryNav
-                  li
-                    a=n
-                    i.fas.fa-heart
-        #slide
-          - const slideImg = {"src1": "./image/slide-image-1920-c.jpg", "src2": "./image/slide-image-1920-d.jpg", "src3": "./image/slide-image-1920-f.jpg"}
-          + customSlide(slideImg)
-          - const arrH1 = ["save", "the date", "- 27 . 11 . 98 -"]
-          .slide__content
-            for n in arrH1
-              h1=n
-            h2 *** we are getting married ***
-            .slide__content__icon
-              + customIcon
+      nav.container
+        .row
+          a.logo(href="#")
+            strong g
+            i.fas.fa-heart
+            strong d
+          #nav__menu
+            - const arryNav = [ "home", "about", "gallery", "the story", "the wedding", "blog", "page", "rsvp"]
+            ul
+              for n in arryNav
+                li
+                  a=n
+                  i.fas.fa-heart
     main
+      section#slide
+        - const slideImg = {"src1": "./image/slide-image-1920-c.jpg", "src2": "./image/slide-image-1920-d.jpg", "src3": "./image/slide-image-1920-f.jpg"}
+        + customSlide(slideImg)
+        - const arrH1 = ["save", "the date", "- 27 . 11 . 98 -"]
+        .slide__content
+          for n in arrH1
+            h1=n
+          h2 *** we are getting married ***
+          .slide__content__icon
+            + customIcon
       section#couple
         .container
           .row
