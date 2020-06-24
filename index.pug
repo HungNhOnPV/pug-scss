@@ -25,6 +25,11 @@ mixin customCountdown(metadata)
     span.countdown__section__amount=metadata.amount
     span.countdown__section__period=metadata.period
 
+mixin customTitle(metadata)
+  h1=metadata.title
+  p.title__blurb=metadata.paragraph
+  + customIcon
+
 doctype html
 html(lang="en")
   head
@@ -63,12 +68,9 @@ html(lang="en")
             + customIcon
       section#couple
         .container
-          .row
-            .title
-              h1 the happy couple
-              p.title__blurb Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices malesuada ante quis pharetra. Nullam non bibendum dolor. Ut vel turpis accumsan, efficitur dolor fermentum, tincidunt metus.
-              .title__icon
-                + customIcon
+          .title
+            - const title1 = {"title": "the happy couple", "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices malesuada ante quis pharetra. Nullam non bibendum dolor. Ut vel turpis accumsan, efficitur dolor fermentum, tincidunt metus."}
+            + customTitle(title1)
           .row
             - const photo = [{"src": "./image/him2.jpg", "a": "about him", "h4": "*** the groom ***"}, {"src": "./image/her2.jpg", "a": "about her", "h4": "*** the bride ***"}]
             + customPhoto(photo[0])
@@ -84,4 +86,15 @@ html(lang="en")
           span.countdown--row
             - const arrSpan = [{'amount': 0, 'period': 'W'}, {'amount': 0, 'period':'D'}, {'amount': 0, 'period': 'H'}, {'amount': 0, 'period': 'm'}, {'amount': 0, 'period': 's'}]
             for n in arrSpan
-              + customCountdown(n)          
+              + customCountdown(n)
+      section#wedding
+        .wedding__title
+          - const title2 = {"title": "the wedding", "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing"}
+          + customTitle(title2)
+        .wedding__content.container
+          .row
+            - const photo1 = [{"src": "./image/the-wedding-1a.jpg", "a": "get direction"}, {"src": "./image/the-wedding-4a.jpg", "a": "gift list"}, {"src": "./image/accomodation.jpg", "a": "accomodation"}]
+            + customPhoto(photo1[0])
+            + customPhoto(photo1[1])
+            + customPhoto(photo1[2])
+      
