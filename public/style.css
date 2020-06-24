@@ -1,4 +1,4 @@
-#couple .container .row .photo__layout h4, #slide .slide__content h2 {
+#countdown .countdown h2, #couple .container .row .photo__layout h4, #slide .slide__content h2 {
   border-top: medium double #FFF;
   border-bottom: medium double #FFF;
 }
@@ -154,51 +154,60 @@ header nav.container .row #nav__menu ul li:hover {
   line-height: 1.2;
   margin-left: -150px;
   transform: rotate(-10deg);
-  font-size: 50px;
+  font-size: 60px;
   font-family: "pacifico-regular";
   text-align: center;
   text-transform: capitalize;
 }
-#slide .slide__content h1:nth-child(3) {
-  font-size: 40px;
-}
 #slide .slide__content h2 {
-  width: 400px;
+  width: 500px;
   padding: 10px 0;
+  margin: 40px 0 20px -250px;
   font-family: "roboto";
   font-size: 16px;
   text-align: center;
   text-transform: uppercase;
-  margin-left: -200px;
-  margin-top: 40px;
 }
-#slide .slide__content__icon {
+#slide .slide__content h1:nth-child(3) {
+  font-size: 40px;
+}
+#slide .slide__content .slide__content__icon {
   width: 100px;
   text-align: center;
-  margin-top: 40px;
-  margin-left: -50px;
+  margin: 40px 0 20px -50px;
 }
-#slide .slide__content__icon i {
+#slide .slide__content .slide__content__icon i {
   padding: 5px;
   font-size: 20px;
 }
-#slide .slide__content__icon span {
+#slide .slide__content .slide__content__icon span {
   display: inline-block;
   width: 10px;
   height: 8px;
   border-top: solid 1px #FFF;
 }
-#slide .slide__content__icon i:nth-child(2) {
+#slide .slide__content .slide__content__icon i:nth-child(2) {
   position: relative;
   z-index: 1;
   color: #f0394d;
   right: -7px;
 }
-#slide .slide__content__icon i:nth-child(3) {
+#slide .slide__content .slide__content__icon i:nth-child(3) {
   position: relative;
   z-index: 0;
   color: #FFF;
   left: -7px;
+}
+#slide .slide__content span.slide__content--row {
+  display: block;
+  width: 300px;
+  text-align: center;
+  margin-left: -150px;
+  font-size: 20px;
+  font-family: "roboto";
+}
+#slide .slide__content span.slide__content--row span.slide__content__section {
+  margin: 13px;
 }
 
 #couple {
@@ -349,6 +358,92 @@ header nav.container .row #nav__menu ul li:hover {
 #couple .container .row .photo:hover .photo__layout {
   background: rgba(0, 0, 0, 0.3);
   transition: 0.5s;
+}
+
+#countdown {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: -100%;
+  height: 500px;
+  background: url(./image/parallax-image-1a.jpg) no-repeat;
+  background-attachment: fixed;
+  margin-bottom: 200px;
+}
+#countdown:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+#countdown .countdown {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  z-index: 1;
+  color: #FFF;
+}
+#countdown .countdown h1 {
+  width: 300px;
+  line-height: 1.2;
+  margin-left: -150px;
+  transform: rotate(-10deg);
+  font-size: 60px;
+  font-family: "pacifico-regular";
+  text-align: center;
+  text-transform: capitalize;
+}
+#countdown .countdown h2 {
+  width: 500px;
+  padding: 10px 0;
+  margin: 40px 0 20px -250px;
+  font-family: "roboto";
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+}
+#countdown .countdown .countdown__icon {
+  width: 100px;
+  text-align: center;
+  margin: 40px 0 20px -50px;
+}
+#countdown .countdown .countdown__icon i {
+  padding: 5px;
+  font-size: 20px;
+}
+#countdown .countdown .countdown__icon span {
+  display: inline-block;
+  width: 20px;
+  height: 8px;
+  border-top: solid 1px #FFF;
+}
+#countdown .countdown .countdown__icon i:nth-child(2) {
+  position: relative;
+  z-index: 1;
+  color: #f0394d;
+  right: -7px;
+}
+#countdown .countdown .countdown__icon i:nth-child(3) {
+  position: relative;
+  z-index: 0;
+  color: #FFF;
+  left: -7px;
+}
+#countdown .countdown span.countdown--row {
+  display: block;
+  width: 300px;
+  text-align: center;
+  margin-left: -150px;
+  font-size: 20px;
+  font-family: "roboto";
+}
+#countdown .countdown span.countdown--row span.countdown__section {
+  margin: 13px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -20,6 +20,11 @@ mixin customPhoto(metadata)
         i.fas.fa-heart
       h4=metadata.h4
 
+mixin customCountdown(metadata)
+  span.countdown__section
+    span.countdown__section__amount=metadata.amount
+    span.countdown__section__period=metadata.period
+
 doctype html
 html(lang="en")
   head
@@ -68,3 +73,15 @@ html(lang="en")
             - const photo = [{"src": "./image/him2.jpg", "a": "about him", "h4": "*** the groom ***"}, {"src": "./image/her2.jpg", "a": "about her", "h4": "*** the bride ***"}]
             + customPhoto(photo[0])
             + customPhoto(photo[1])
+      section#countdown
+        - const arrH2 = ["counting", "down"]
+        .countdown
+          h2 *** at foxegan hotel & restaurant, los angeles ***
+          for n in arrH2
+            h1=n
+          .countdown__icon
+            + customIcon
+          span.countdown--row
+            - const arrSpan = [{'amount': 0, 'period': 'W'}, {'amount': 0, 'period':'D'}, {'amount': 0, 'period': 'H'}, {'amount': 0, 'period': 'm'}, {'amount': 0, 'period': 's'}]
+            for n in arrSpan
+              + customCountdown(n)          
