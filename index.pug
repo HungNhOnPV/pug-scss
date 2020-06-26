@@ -1,9 +1,4 @@
-mixin customSlide(metadata)
-  .slide__slidy
-    img(title="slide1" src=metadata.src1)
-    img(title="slide2" src=metadata.src2)
-    img(title="slide3" src=metadata.src3)
-
+//- mixin
 mixin customIcon
   span
   i.fas.fa-heart
@@ -50,6 +45,8 @@ html(lang="en")
             strong d
           #nav__menu
             - const arryNav = [ "home", "about", "gallery", "the story", "the wedding", "blog", "page", "rsvp"]
+            input(type="checkbox" id="menu")
+            label(for="menu")
             ul
               for n in arryNav
                 li
@@ -57,8 +54,7 @@ html(lang="en")
                   i.fas.fa-heart
     main
       section#slide
-        - const slideImg = {"src1": "./image/slide-image-1920-c.jpg", "src2": "./image/slide-image-1920-d.jpg", "src3": "./image/slide-image-1920-f.jpg"}
-        + customSlide(slideImg)
+        .slide__slidy
         - const arrH1 = ["save", "the date", "- 27 . 11 . 98 -"]
         .slide__content
           for n in arrH1
@@ -97,4 +93,17 @@ html(lang="en")
             + customPhoto(photo1[0])
             + customPhoto(photo1[1])
             + customPhoto(photo1[2])
-      
+      section#rsvp
+        .rsvp__title
+          - const title3 = {"title": "are you attending", "paragraph": "Please reserve before June 19th, 2015. Lorem ipsum dolor sit amet, consectetur adipiscing"}
+          + customTitle(title3)
+        a(href="#") rsvp
+    footer
+      - const arrH3 = ["thank", "you"]
+        .footer__couple
+          for n in arrH3
+            h1=n
+          h2 GERRARD & DIANNE
+          .footer__couple__icon
+            + customIcon
+
