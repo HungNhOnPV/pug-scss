@@ -1,29 +1,5 @@
 //- mixin
-mixin customIcon
-  span
-  i.fas.fa-heart
-  i.fas.fa-heart
-  span
-
-mixin customPhoto(metadata)
-  .photo
-    img(title="photo" src=metadata.src)
-    .photo__layout
-      a(href="#" type="button")=metadata.a
-      .photo__layout__icon
-        i.fas.fa-heart
-        i.fas.fa-heart
-      h4=metadata.h4
-
-mixin customCountdown(metadata)
-  span.countdown__section
-    span.countdown__section__amount=metadata.amount
-    span.countdown__section__period=metadata.period
-
-mixin customTitle(metadata)
-  h1=metadata.title
-  p.title__blurb=metadata.paragraph
-  + customIcon
+include ./customMixin
 
 doctype html
 html(lang="en")
@@ -36,22 +12,8 @@ html(lang="en")
     link(rel="stylesheet", href="./style.css")
     link(rel="stylesheet", href="fontawesome-free-5.13.0-web/css/all.min.css")
   body
-    header
-      nav.container
-        .row
-          a.logo(href="#")
-            strong g
-            i.fas.fa-heart
-            strong d
-          #nav__menu
-            - const arryNav = [ "home", "about", "gallery", "the story", "the wedding", "blog", "page", "rsvp"]
-            input(type="checkbox" id="menu")
-            label(for="menu")
-            ul
-              for n in arryNav
-                li
-                  a=n
-                  i.fas.fa-heart
+    include ./header
+    include ./constant
     main
       section#slide
         .slide__slidy
@@ -65,14 +27,11 @@ html(lang="en")
       section#couple
         .container
           .title
-            - const title1 = {"title": "the happy couple", "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices malesuada ante quis pharetra. Nullam non bibendum dolor. Ut vel turpis accumsan, efficitur dolor fermentum, tincidunt metus."}
             + customTitle(title1)
           .row
-            - const photo = [{"src": "./image/him2.jpg", "a": "about him", "h4": "*** the groom ***"}, {"src": "./image/her2.jpg", "a": "about her", "h4": "*** the bride ***"}]
             + customPhoto(photo[0])
             + customPhoto(photo[1])
       section#countdown
-        - const arrH2 = ["counting", "down"]
         .countdown
           h2 *** at foxegan hotel & restaurant, los angeles ***
           for n in arrH2
@@ -80,30 +39,19 @@ html(lang="en")
           .countdown__icon
             + customIcon
           span.countdown--row
-            - const arrSpan = [{'amount': 0, 'period': 'W'}, {'amount': 0, 'period':'D'}, {'amount': 0, 'period': 'H'}, {'amount': 0, 'period': 'm'}, {'amount': 0, 'period': 's'}]
             for n in arrSpan
               + customCountdown(n)
       section#wedding
         .wedding__title
-          - const title2 = {"title": "the wedding", "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing"}
           + customTitle(title2)
         .wedding__content.container
           .row
-            - const photo1 = [{"src": "./image/the-wedding-1a.jpg", "a": "get direction"}, {"src": "./image/the-wedding-4a.jpg", "a": "gift list"}, {"src": "./image/accomodation.jpg", "a": "accomodation"}]
             + customPhoto(photo1[0])
             + customPhoto(photo1[1])
             + customPhoto(photo1[2])
       section#rsvp
         .rsvp__title
-          - const title3 = {"title": "are you attending", "paragraph": "Please reserve before June 19th, 2015. Lorem ipsum dolor sit amet, consectetur adipiscing"}
           + customTitle(title3)
         a(href="#") rsvp
-    footer
-      - const arrH3 = ["thank", "you"]
-        .footer__couple
-          for n in arrH3
-            h1=n
-          h2 GERRARD & DIANNE
-          .footer__couple__icon
-            + customIcon
+    include ./footer
 

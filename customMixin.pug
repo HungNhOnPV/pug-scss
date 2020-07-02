@@ -1,0 +1,25 @@
+mixin customIcon
+  span
+  i.fas.fa-heart
+  i.fas.fa-heart
+  span
+
+mixin customPhoto(metadata)
+  .photo
+    img(title="photo" src=metadata.src)
+    .photo__layout
+      a(href="#" type="button")=metadata.a
+      .photo__layout__icon
+        i.fas.fa-heart
+        i.fas.fa-heart
+      h4=metadata.h4
+
+mixin customCountdown(metadata)
+  span.countdown__section
+    span.countdown__section__amount=metadata.amount
+    span.countdown__section__period=metadata.period
+
+mixin customTitle(metadata)
+  h1=metadata.title
+  p.title__blurb=metadata.paragraph
+  + customIcon

@@ -1,0 +1,16 @@
+header
+  nav.container
+    .row
+      a.logo(href="#")
+        strong g
+        i.fas.fa-heart
+        strong d
+      #nav__menu
+        - const arryNav = [ "home", "about", "gallery", "the story", "the wedding", "blog", "page", "rsvp"]
+        input(type="checkbox" id="menu")
+        label(for="menu")
+        ul
+          for n in arryNav
+            li
+              a=n
+              i.fas.fa-heart
