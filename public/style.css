@@ -148,6 +148,10 @@ header nav.container .row #nav__menu ul li {
   margin-left: 15px;
   cursor: pointer;
 }
+header nav.container .row #nav__menu ul li a {
+  text-decoration: none;
+  color: #FFF;
+}
 header nav.container .row #nav__menu ul li i {
   font-size: 10px;
   color: #f0394d;

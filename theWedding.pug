@@ -1,0 +1,21 @@
+extends index.pug
+
+block main
+  main
+    section#slide
+      .slide__slidy
+      - const arrH1 = ["save", "the date", "- 27 . 11 . 98 -"]
+      .slide__content
+        for n in arrH1
+          h1=n
+        h2 *** we are getting married ***
+        .slide__content__icon
+          + customIcon
+    section#wedding
+      .wedding__title
+        + customTitle(title2)
+      .wedding__content.container
+        .row
+          + customPhoto(photo1[0])
+          + customPhoto(photo1[1])
+          + customPhoto(photo1[2])

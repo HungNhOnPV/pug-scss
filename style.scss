@@ -287,7 +287,11 @@ header {
           li {
             margin-left: 15px;
             cursor: pointer;
-
+            
+            a {
+              text-decoration: none;
+              color: $colorWhite;
+            }
             i {
               font-size: 10px;
               color: $color;

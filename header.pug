@@ -12,5 +12,11 @@ header
         ul
           for n in arryNav
             li
-              a=n
+              case n
+                when 'home'
+                  a(href="./index.html")=n
+                when 'the wedding'
+                  a(href="./theWedding.html")=n
+                default 
+                  a(href="#")=n
               i.fas.fa-heart

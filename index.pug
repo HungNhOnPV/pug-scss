@@ -12,46 +12,39 @@ html(lang="en")
     link(rel="stylesheet", href="./style.css")
     link(rel="stylesheet", href="fontawesome-free-5.13.0-web/css/all.min.css")
   body
-    include ./header
     include ./constant
-    main
-      section#slide
-        .slide__slidy
-        - const arrH1 = ["save", "the date", "- 27 . 11 . 98 -"]
-        .slide__content
-          for n in arrH1
-            h1=n
-          h2 *** we are getting married ***
-          .slide__content__icon
-            + customIcon
-      section#couple
-        .container
-          .title
-            + customTitle(title1)
-          .row
-            + customPhoto(photo[0])
-            + customPhoto(photo[1])
-      section#countdown
-        .countdown
-          h2 *** at foxegan hotel & restaurant, los angeles ***
-          for n in arrH2
-            h1=n
-          .countdown__icon
-            + customIcon
-          span.countdown--row
-            for n in arrSpan
-              + customCountdown(n)
-      section#wedding
-        .wedding__title
-          + customTitle(title2)
-        .wedding__content.container
-          .row
-            + customPhoto(photo1[0])
-            + customPhoto(photo1[1])
-            + customPhoto(photo1[2])
-      section#rsvp
-        .rsvp__title
-          + customTitle(title3)
-        a(href="#") rsvp
+    include ./header
+    block main
+      main
+        section#slide
+          .slide__slidy
+          - const arrH1 = ["save", "the date", "- 27 . 11 . 98 -"]
+          .slide__content
+            for n in arrH1
+              h1=n
+            h2 *** we are getting married ***
+            .slide__content__icon
+              + customIcon
+        section#couple
+          .container
+            .title
+              + customTitle(title1)
+            .row
+              + customPhoto(photo[0])
+              + customPhoto(photo[1])
+        section#countdown
+          .countdown
+            h2 *** at foxegan hotel & restaurant, los angeles ***
+            for n in arrH2
+              h1=n
+            .countdown__icon
+              + customIcon
+            span.countdown--row
+              for n in arrSpan
+                + customCountdown(n)
+        section#rsvp
+          .rsvp__title
+            + customTitle(title3)
+          a(href="#") rsvp
     include ./footer
 
